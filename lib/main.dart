@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:weather_forecast/pages/weather_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:weather_forecast/page.dart';
+
+import 'package:weather_forecast/models.dart';
 
 
 void main() {
@@ -11,9 +14,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    try {
+      getReport();
+    }
+    catch(e) {
+      Fluttertoast.showToast(msg: e.toString());
+    }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WeatherHomePage(title: 'Weather Forecast'),
+      home: Scaffold(body: WeatherHomePage()),
     );
   }
 }
